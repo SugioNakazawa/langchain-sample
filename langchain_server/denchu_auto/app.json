@@ -1,0 +1,53 @@
+{
+    "debug": false,
+    "whisper_model": "kotoba-tech/kotoba-whisper-v2.2",
+    "use_pipeline": true,
+    "audio_duration": 5,
+    "audio_sample_rate": 16000,
+    "report_folder": "out",
+    "log_folder": "logs",
+    "system_prompts": [
+        "あなたはMCPサーバーを使用するAIアシスタントです。",
+        "MCP Toolの結果を優先して回答として採用してください。",
+        "開始時には、担当IDと電柱IDを必ず確認してください。",
+        "チェック項目のOK/NGの更新指示があった場合はMCP Toolを使って更新してください。",
+        "回答は表や段組みなどを使わず、読み上げることができる短い日本語で書いてください。"
+    ],
+    "color": {
+        "tool": "32",
+        "system": "36",
+        "agent": "93",
+        "user": "91"
+    },
+    "openai_api_base": "http://localhost:11434/v1",
+    "agent_model": "qwen3:8b",
+    "input_texts": [
+        "電柱のチェック業務を開始する。",
+        "担当IDは2電柱は567",
+        "2はOK",
+        "CはOK",
+        "3と4はOK",
+        "10は古くなってるのでNG",
+        "残りは？",
+        "他はOK",
+        "終了",
+        "このレポートを作成して"
+    ],
+    "mcp_servers": {
+        "checklist": {
+            "transport": "stdio",
+            "command": "java",
+            "args": [
+                "-Xms64m",
+                "-Xmx128m",
+                "-jar",
+                "langchain_server/lib/sandbox-mcp-checklist-0.0.1-SNAPSHOT-all.jar",
+                "--type",
+                "3",
+                "-c",
+                "tcp://localhost:12345"
+            ]
+        }
+    },
+    "show_report": false
+}
