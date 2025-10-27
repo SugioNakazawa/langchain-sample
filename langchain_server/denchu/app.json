@@ -20,7 +20,7 @@
         "user": "91"
     },
     "openai_api_base": "http://localhost:11434/v1",
-    "agent_model": "gpt-oss:20b",
+    "agent_model": "qwen3:14b",
     "input_texts": [
         "電柱のチェック業務を開始する。",
         "担当IDは2電柱は567",
@@ -41,7 +41,7 @@
                 "-Xms64m",
                 "-Xmx128m",
                 "-jar",
-                "/Users/sugionakazawa/github/langchain-sample/langchain_server/lib/sandbox-mcp-checklist-0.0.1-SNAPSHOT-all.jar",
+                "langchain_server/lib/sandbox-mcp-checklist-0.0.1-SNAPSHOT-all.jar",
                 "--type",
                 "3",
                 "-c",

@@ -111,10 +111,12 @@ async def chat_completions(request: Request):
     body = await request.json()
     messages = body.get("messages", [])
     print('input messages:', messages)
-    prompt = "\n".join([m["content"] for m in messages if m["role"] == "user"])
-    # print(prompt)
+    # prompt = "\n".join([m["content"] for m in messages if m["role"] == "user"])
+    prompt = "\n".join([m["content"] for m in messages])
+    print('prompt', prompt)
 
-    result = await agent.ainvoke({"input": [HumanMessage(content=prompt)]})
+    print('HumanMessage', HumanMessage(content=prompt))
+    result = await agent.ainvoke({"messages": [HumanMessage(content=prompt)]})
 
     write_log(f'agent> {result}', color=config['color']['agent'])
     end_time = datetime.datetime.now()
