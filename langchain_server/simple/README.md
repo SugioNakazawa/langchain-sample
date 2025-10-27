@@ -1,3 +1,5 @@
+'このREADMEは AI により生成されています。'
+
 # LangChain Simple Server
 
 LangChainを使用してローカルLLM（Ollama）をOpenAI互換APIとして公開するシンプルなサーバーです。MCP統合やエージェント機能を除いた、最小構成のLangChain APIサーバーです。

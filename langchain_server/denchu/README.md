@@ -1,3 +1,5 @@
+'このREADMEは AI により生成されています。'
+
 # Denchu Interactive Server
 
 電柱チェック業務向けの対話型LangChainサーバーです。OpenWebUIと連携し、MCPサーバーを通じて実際の業務ツールと統合された、実用的なAIアシスタントを提供します。
