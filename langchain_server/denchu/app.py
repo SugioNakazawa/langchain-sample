@@ -9,8 +9,7 @@ import uuid
 from fastapi import FastAPI, Request
 from langchain_openai import ChatOpenAI
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langgraph.prebuilt import create_react_agent
-from langchain_core.messages import SystemMessage
+from langchain.agents import create_agent
 from langgraph.store.memory import InMemoryStore
 from langchain_core.messages import HumanMessage
 import uvicorn
@@ -85,7 +84,7 @@ async def initialize_components():
     for tool in tools:
         write_log(f'system> ツール: {tool.name} - {tool.description}', color=config['color']['system'])
     write_log(f'system> agentを構築します', color=config['color']['system'])
-    sys_message = SystemMessage(content='\n'.join(config['system_prompts']))
+    
     llm = ChatOpenAI(
         openai_api_base=config['openai_api_base'],
         streaming=False,
@@ -93,11 +92,13 @@ async def initialize_components():
         openai_api_key="EMPTY",
         model=config['agent_model']
     )
-    # agent = create_react_agent(llm, tools, prompt=sys_message, store=InMemoryStore())
-    agent = create_react_agent(
+    
+    # 新しいAPIを使用してエージェントを作成
+    system_prompt = "\n".join(config['system_prompts'])
+    agent = create_agent(
         model=llm,
         tools=tools,
-        prompt=sys_message,
+        system_prompt=system_prompt,
         store=InMemoryStore()
     )
 
