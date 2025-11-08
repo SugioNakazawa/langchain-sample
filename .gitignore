@@ -205,3 +205,5 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+langchain_server/human-in-the-loop/hitl_demo.db
+langchain_server/human-in-the-loop/hitl_model.pkl
