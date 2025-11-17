@@ -29,16 +29,24 @@ def get_embeddings():
         base_url="http://localhost:11434",
         model="kun432/cl-nagoya-ruri-large"
     )
+        # model="kun432/cl-nagoya-ruri-large"
+        # model="mxbai-embed-large"
 
 def get_llm(streaming: bool = False):
     """LLMモデルを取得"""
     return ChatOpenAI(
         openai_api_base="http://localhost:11434/v1",
         streaming=streaming,
-        temperature=0.7,
+        temperature=0.3,
         openai_api_key="EMPTY",
-        model="qwen3:30b-a3b"
+        model="qwen3:8b"
+        # max_tokens=2000
     )
+        # model="qwen3:30b-a3b"
+        # model="gpt-oss:20b"
+        # model="qwen3:14b"
+        # model="qwen3:8b"
+        # model="qwen3:4b"
 
 # ===== PDFディレクトリの設定 =====
 PDF_DIR = Path(__file__).parent / "documents"
@@ -226,10 +234,9 @@ async def build_vectorstore_from_pdf(documents):
     
     # テキスト分割器
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=250,
-        chunk_overlap=50,
-        separators=["\n\n"]
-        # separators=["\n\n", ". ", " ", ""]
+        chunk_size=400,
+        chunk_overlap=80,
+        separators=["\n\n", "\n", "。", ". ", " "]
     )
     
     # ドキュメントを分割
@@ -438,7 +445,7 @@ async def interactive_pdf_qa(vectorstore):
                 preview = doc.page_content[:100].replace('\n', ' ')
                 print(f"   - {source} (p.{page}): {preview}...")
             
-            print("\n💡 回答:")
+            print("\n💡3 回答:")
             answer = await rag_chain.ainvoke(question)
             print(answer)
             print("-" * 70)
