@@ -39,7 +39,7 @@ def get_llm(streaming: bool = False):
         streaming=streaming,
         temperature=0.3,
         openai_api_key="EMPTY",
-        model="qwen3:8b"
+        model="qwen3:14b"
         # max_tokens=2000
     )
         # model="qwen3:30b-a3b"
@@ -234,8 +234,8 @@ async def build_vectorstore_from_pdf(documents):
     
     # テキスト分割器
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=400,
-        chunk_overlap=80,
+        chunk_size=500,
+        chunk_overlap=100,
         separators=["\n\n", "\n", "。", ". ", " "]
     )
     
