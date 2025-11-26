@@ -48,9 +48,11 @@ OpenWebUI → FastAPI → LangChain Agent → MCP Server → Business Tools
 ollama serve
 ollama pull qwen3:14b
 
-# Java環境の確認（MCPサーバー用）
+# Java環境の確認（MCPサーバー用） 21 以上が必要
 java --version
 ```
+
+tsurugidb が起動していること。tcp://localhost:12345 で接続可能なこと。
 
 ### 2. サーバー起動
 
@@ -67,7 +69,7 @@ python app.py custom_config.json
 
 ```bash
 # OpenWebUIの起動（別ターミナル）
-cd openwebui-docker
+cd docker/openwebui
 docker-compose up -d
 
 # ブラウザでアクセス

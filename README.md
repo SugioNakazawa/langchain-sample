@@ -37,7 +37,7 @@ langchain-sample/
 ### 1. 環境要件
 
 - **Python**: 3.8以上(推奨 3.13.7)
-- **Java**: 11以上 (MCPサーバー用)
+- **Java**: 21以上 (MCPサーバー用)
 - **Docker & Docker Compose**: OpenWebUI用
 - **Ollama**: LLMエンジン
 
